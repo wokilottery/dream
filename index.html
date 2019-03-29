@@ -3,6 +3,7 @@
 
 <head>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     <meta charset=utf-8 />
     <title>夢想號碼試算</title>
 
@@ -11,6 +12,7 @@
 
 
 <body>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <style type="text/css">
         div {
             float: left
@@ -90,23 +92,23 @@
 
                 }
                 else {
-                    if (FormId != 'dreamSpec'){
+                    if (FormId != 'dreamSpec') {
                         if (document.getElementById(FormId).value == document.getElementById(arrayCol[i]).value) {
-                        if (FormId == 'dreamSpec') {
-                            alert('特別號與欄位' + (parseInt(i) + 1) + '的值重覆，請重新輸入!');
-                        }
-                        else if (parseInt(i) == 5) {
-                            alert('欄位' + (parseInt(arrayCol.indexOf(FormId)) + 1) + '與特別號的值重覆，請重新輸入!');
-                        }
-                        else {
-                            alert('欄位' + (parseInt(arrayCol.indexOf(FormId)) + 1) + '與' + '欄位' + (parseInt(i) + 1) + '的值重覆，請重新輸入!');
-                        }
+                            if (FormId == 'dreamSpec') {
+                                alert('特別號與欄位' + (parseInt(i) + 1) + '的值重覆，請重新輸入!');
+                            }
+                            else if (parseInt(i) == 5) {
+                                alert('欄位' + (parseInt(arrayCol.indexOf(FormId)) + 1) + '與特別號的值重覆，請重新輸入!');
+                            }
+                            else {
+                                alert('欄位' + (parseInt(arrayCol.indexOf(FormId)) + 1) + '與' + '欄位' + (parseInt(i) + 1) + '的值重覆，請重新輸入!');
+                            }
 
-                        document.getElementById(FormId).value = '';
-                        //console.log(document.getElementById(FormId));
-                        document.getElementById(FormId).focus(); //回到原來的輸入欄位
-                        break;  //已經找到重覆的值了，不需要再執行下去了
-                    }
+                            document.getElementById(FormId).value = '';
+                            //console.log(document.getElementById(FormId));
+                            document.getElementById(FormId).focus(); //回到原來的輸入欄位
+                            break;  //已經找到重覆的值了，不需要再執行下去了
+                        }
                     }
 
                 }

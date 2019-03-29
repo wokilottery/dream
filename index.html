@@ -34,17 +34,17 @@
     <form name=F1
         style="font-weight:bold;font-size:30px;padding:5px;margin-top:5px;margin-bottom:5px;background-color:hotpink;width:780px;vertical-align:middle">
         <input style="width:50px;font-weight:bold;font-size:30px" type="number" onblur="check_int('dreamNum1','1')"
-            id="dreamNum1" maxlength="2" >
+            id="dreamNum1" maxlength="2">
         <input style="width:50px;font-weight:bold;font-size:30px" type="number" onblur="check_int('dreamNum2','1')"
-            id="dreamNum2" maxlength="2" >
+            id="dreamNum2" maxlength="2">
         <input style="width:50px;font-weight:bold;font-size:30px" type="number" onblur="check_int('dreamNum3','1')"
-            id="dreamNum3" maxlength="2" >
+            id="dreamNum3" maxlength="2">
         <input style="width:50px;font-weight:bold;font-size:30px" type="number" onblur="check_int('dreamNum4','1')"
-            id="dreamNum4" maxlength="2" >
+            id="dreamNum4" maxlength="2">
         <input style="width:50px;font-weight:bold;font-size:30px" type="number" onblur="check_int('dreamNum5','1')"
-            id="dreamNum5" maxlength="2" > 特別號
+            id="dreamNum5" maxlength="2"> 特別號
         <input style="width:50px;font-weight:bold;font-size:30px" type="number" onblur="check_int('dreamSpec','2')"
-            id="dreamSpec" maxlength="2" >
+            id="dreamSpec" maxlength="2">
     </form>
 
 
@@ -77,7 +77,7 @@
 
             }
 
-            if (document.getElementById(FormId).value != '') {  //欄位不是空值再檢查Double
+            if (document.getElementById(FormId).value != '' && FormId != 'dreamSpec') {  //欄位不是空值和特別號不檢查Double
                 checkDouble(FormId);
             }
 
@@ -85,12 +85,13 @@
 
 
         function checkDouble(FormId) {
-            for (i = 0; i <= arrayCol.length - 1; i++) {
+            for (i = 0; i <= arrayCol.length - 2; i++) {  //特別號不用檢查了
                 if (FormId == arrayCol[i]) {  //代表傳入的比較欄位跟陣列的一樣，不需要比較
 
                 }
                 else {
-                    if (document.getElementById(FormId).value == document.getElementById(arrayCol[i]).value) {
+                    if (FormId != 'dreamSpec'){
+                        if (document.getElementById(FormId).value == document.getElementById(arrayCol[i]).value) {
                         if (FormId == 'dreamSpec') {
                             alert('特別號與欄位' + (parseInt(i) + 1) + '的值重覆，請重新輸入!');
                         }
@@ -106,6 +107,8 @@
                         document.getElementById(FormId).focus(); //回到原來的輸入欄位
                         break;  //已經找到重覆的值了，不需要再執行下去了
                     }
+                    }
+
                 }
             }
         }

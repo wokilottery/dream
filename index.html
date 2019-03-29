@@ -30,20 +30,21 @@
         }
     </style>
 
+
     <form name=F1
         style="font-weight:bold;font-size:30px;padding:5px;margin-top:5px;margin-bottom:5px;background-color:hotpink;width:780px;vertical-align:middle">
-        <input style="width:50px;font-weight:bold;font-size:30px" type="number" onblur="check_int('dreamNum1')" id="dreamNum1"
-            maxlength="2" onkeyup="keyFunction('dreamNum1')">
-        <input style="width:50px;font-weight:bold;font-size:30px" type="number" onblur="check_int('dreamNum2')" id="dreamNum2"
-            maxlength="2" onkeyup="keyFunction('dreamNum2')">
-        <input style="width:50px;font-weight:bold;font-size:30px" type="number" onblur="check_int('dreamNum3')" id="dreamNum3"
-            maxlength="2" onkeyup="keyFunction('dreamNum3')">
-        <input style="width:50px;font-weight:bold;font-size:30px" type="number" onblur="check_int('dreamNum4')" id="dreamNum4"
-            maxlength="2" onkeyup="keyFunction('dreamNum4')">
-        <input style="width:50px;font-weight:bold;font-size:30px" type="number" onblur="check_int('dreamNum5')" id="dreamNum5"
-            maxlength="2" onkeyup="keyFunction('dreamNum5')"> 特別號
-        <input style="width:50px;font-weight:bold;font-size:30px" type="number" onblur="check_int('dreamSpec')" id="dreamSpec"
-            maxlength="2" onkeyup="keyFunction('dreamSpec')">
+        <input style="width:50px;font-weight:bold;font-size:30px" type="number" onblur="check_int('dreamNum1','1')"
+            id="dreamNum1" maxlength="2" >
+        <input style="width:50px;font-weight:bold;font-size:30px" type="number" onblur="check_int('dreamNum2','1')"
+            id="dreamNum2" maxlength="2" >
+        <input style="width:50px;font-weight:bold;font-size:30px" type="number" onblur="check_int('dreamNum3','1')"
+            id="dreamNum3" maxlength="2" >
+        <input style="width:50px;font-weight:bold;font-size:30px" type="number" onblur="check_int('dreamNum4','1')"
+            id="dreamNum4" maxlength="2" >
+        <input style="width:50px;font-weight:bold;font-size:30px" type="number" onblur="check_int('dreamNum5','1')"
+            id="dreamNum5" maxlength="2" > 特別號
+        <input style="width:50px;font-weight:bold;font-size:30px" type="number" onblur="check_int('dreamSpec','2')"
+            id="dreamSpec" maxlength="2" >
     </form>
 
 
@@ -52,264 +53,71 @@
 
 
     <script>
-        var FormId, PTotal, TTotal, BId, BValue
-        function check_int(FormId) {
-             if (FormId == "dreamNum1") {
-                if (document.F1.dreamNum1.value!=''&&(document.F1.dreamNum1.value<=0||document.F1.dreamNum1.value>70)) {
+
+
+        var FormId, FormType, PTotal, TTotal, BId, BValue
+        var arrayCol = ['dreamNum1', 'dreamNum2', 'dreamNum3', 'dreamNum4', 'dreamNum5', 'dreamSpec'];
+        function check_int(FormId, FormType) {
+            if (FormType == 1) {
+                if (document.getElementById(FormId).value != '' && (document.getElementById(FormId).value <= 0 || document.getElementById(FormId).value > 70)) {
                     alert("请输入1~70的數字");
-                    document.F1.dreamNum1.value = ''
+                    document.getElementById(FormId).value = ''
+                    document.getElementById(FormId).focus();
                 }
-                else {
-                    if (document.F1.dreamNum1.value.length == 1) { //輸入值只有1個欄位，前面補1個0
-                        document.F1.dreamNum1.value = ('0' + document.F1.dreamNum1.value)
-                    }
-                }
-                checkDouble(FormId);
             }
-            else if (FormId == "dreamNum2") {
-                if (document.F1.dreamNum2.value!=''&&(document.F1.dreamNum2.value<=0||document.F1.dreamNum2.value>70)) {
-                    alert("请输入1~70的數字");
-                    document.F1.dreamNum2.value = ''
+            else if (FormType = 2) {
+                if (document.getElementById(FormId).value != '' && (document.getElementById(FormId).value <= 0 || document.getElementById(FormId).value > 25)) {
+                    alert("请输入1~25的數字");
+                    document.getElementById(FormId).value = ''
+                    document.getElementById(FormId).focus();
                 }
-                else {
-                    if (document.F1.dreamNum2.value.length == 1) { //輸入值只有1個欄位，前面補1個0
-                        document.F1.dreamNum2.value = ('0' + document.F1.dreamNum2.value)
-                    }
-                }
-                checkDouble(FormId);
             }
-            else if (FormId == "dreamNum3") {
-                if (document.F1.dreamNum3.value!=''&&(document.F1.dreamNum3.value<=0||document.F1.dreamNum3.value>70)) {
-                    alert("请输入1~70的數字");
-                    document.F1.dreamNum3.value = ''
-                }
-                else {
-                    if (document.F1.dreamNum3.value.length == 1) { //輸入值只有1個欄位，前面補1個0
-                        document.F1.dreamNum3.value = ('0' + document.F1.dreamNum3.value)
-                    }
-                }
-                checkDouble(FormId);
+            if (document.getElementById(FormId).value.length == 1) { //輸入值只有1個欄位，前面補1個0
+                document.getElementById(FormId).value = ('0' + document.getElementById(FormId).value)
 
             }
-            else if (FormId == "dreamNum4") {
-                if (document.F1.dreamNum4.value!=''&&(document.F1.dreamNum4.value<=0||document.F1.dreamNum4.value>70)) {
-                    alert("请输入1~70的數字");
-                    document.F1.dreamNum4.value = ''
-                }
-                else {
-                    if (document.F1.dreamNum4.value.length == 1) { //輸入值只有1個欄位，前面補1個0
-                        document.F1.dreamNum4.value = ('0' + document.F1.dreamNum4.value)
-                    }
-                }
+
+            if (document.getElementById(FormId).value != '') {  //欄位不是空值再檢查Double
                 checkDouble(FormId);
             }
-            else if (FormId == "dreamNum5") {
-                if (document.F1.dreamNum5.value!=''&&(document.F1.dreamNum5.value<=0||document.F1.dreamNum5.value>70)) {
-                    alert("请输入1~70的數字");
-                    document.F1.dreamNum5.value = ''
-                }
-                else {
-                    if (document.F1.dreamNum5.value.length == 1) { //輸入值只有1個欄位，前面補1個0
-                        document.F1.dreamNum5.value = ('0' + document.F1.dreamNum5.value)
-                    }
-                }
-                checkDouble(FormId);
-            }
-            else if (FormId == "dreamSpec") {
-                if (document.F1.dreamSpec.value!=''&&(document.F1.dreamSpec.value<=0||document.F1.dreamSpec.value>25)) {
-                    alert("请输入1~25的數字");
-                    document.F1.dreamSpec.value = ''
-                }
-                else {
-                    if (document.F1.dreamSpec.value.length == 1) { //輸入值只有1個欄位，前面補1個0
-                        document.F1.dreamSpec.value = ('0' + document.F1.dreamSpec.value)
-                    }
-                }
-                checkDouble(FormId);
-            }
+
         }
 
 
         function checkDouble(FormId) {
-            if (FormId == "dreamNum1"){
-                if(document.F1.dreamNum1.value==document.F1.dreamNum2.value&&document.F1.dreamNum2.value!=''){
-                    alert('欄位1與欄位2的值重覆，請重新輸入!');
-                    document.F1.dreamNum1.value='';
-                }
-                else if(document.F1.dreamNum1.value==document.F1.dreamNum3.value&&document.F1.dreamNum3.value!=''){
-                    alert('欄位1與欄位3的值重覆，請重新輸入!');
-                    document.F1.dreamNum1.value='';
-                }
-                else if(document.F1.dreamNum1.value==document.F1.dreamNum4.value&&document.F1.dreamNum4.value!=''){
-                    alert('欄位1與欄位4的值重覆，請重新輸入!');
-                    document.F1.dreamNum1.value='';
-                }
-                else if(document.F1.dreamNum1.value==document.F1.dreamNum5.value&&document.F1.dreamNum5.value!=''){
-                    alert('欄位1與欄位5的值重覆，請重新輸入!');
-                    document.F1.dreamNum1.value='';
-                }
-                else if(document.F1.dreamNum1.value==document.F1.dreamSpec.value&&document.F1.dreamSpec.value!=''){
-                    alert('欄位1與特別號的值重覆，請重新輸入!');
-                    document.F1.dreamNum1.value='';
-                }                                
-            }
-            else if (FormId == "dreamNum2"){
-                if(document.F1.dreamNum2.value==document.F1.dreamNum1.value&&document.F1.dreamNum1.value!=''){
-                    alert('欄位2與欄位1的值重覆，請重新輸入!');
-                    document.F1.dreamNum2.value='';
-                }
-                else if(document.F1.dreamNum2.value==document.F1.dreamNum3.value&&document.F1.dreamNum3.value!=''){
-                    alert('欄位2與欄位3的值重覆，請重新輸入!');
-                    document.F1.dreamNum2.value='';
-                }
-                else if(document.F1.dreamNum2.value==document.F1.dreamNum4.value&&document.F1.dreamNum4.value!=''){
-                    alert('欄位2與欄位4的值重覆，請重新輸入!');
-                    document.F1.dreamNum2.value='';
-                }
-                else if(document.F1.dreamNum2.value==document.F1.dreamNum5.value&&document.F1.dreamNum5.value!=''){
-                    alert('欄位2與欄位5的值重覆，請重新輸入!');
-                    document.F1.dreamNum2.value='';
-                }
-                else if(document.F1.dreamNum2.value==document.F1.dreamSpec.value&&document.F1.dreamSpec.value!=''){
-                    alert('欄位2與特別號的值重覆，請重新輸入!');
-                    document.F1.dreamNum2.value='';
-                }                                
-            }         
-            else if (FormId == "dreamNum3"){
-                if(document.F1.dreamNum3.value==document.F1.dreamNum1.value&&document.F1.dreamNum1.value!=''){
-                    alert('欄位3與欄位1的值重覆，請重新輸入!');
-                    document.F1.dreamNum3.value='';
-                }
-                else if(document.F1.dreamNum3.value==document.F1.dreamNum2.value&&document.F1.dreamNum2.value!=''){
-                    alert('欄位3與欄位2的值重覆，請重新輸入!');
-                    document.F1.dreamNum3.value='';
-                }
-                else if(document.F1.dreamNum3.value==document.F1.dreamNum4.value&&document.F1.dreamNum4.value!=''){
-                    alert('欄位3與欄位4的值重覆，請重新輸入!');
-                    document.F1.dreamNum3.value='';
-                }
-                else if(document.F1.dreamNum3.value==document.F1.dreamNum5.value&&document.F1.dreamNum5.value!=''){
-                    alert('欄位3與欄位5的值重覆，請重新輸入!');
-                    document.F1.dreamNum3.value='';
-                }
-                else if(document.F1.dreamNum3.value==document.F1.dreamSpec.value&&document.F1.dreamSpec.value!=''){
-                    alert('欄位3與特別號的值重覆，請重新輸入!');
-                    document.F1.dreamNum3.value='';
-                }                                
-            } 
-            else if (FormId == "dreamNum4"){
-                if(document.F1.dreamNum4.value==document.F1.dreamNum1.value&&document.F1.dreamNum1.value!=''){
-                    alert('欄位4與欄位1的值重覆，請重新輸入!');
-                    document.F1.dreamNum4.value='';
-                }
-                else if(document.F1.dreamNum4.value==document.F1.dreamNum2.value&&document.F1.dreamNum2.value!=''){
-                    alert('欄位4與欄位2的值重覆，請重新輸入!');
-                    document.F1.dreamNum4.value='';
-                }
-                else if(document.F1.dreamNum4.value==document.F1.dreamNum3.value&&document.F1.dreamNum3.value!=''){
-                    alert('欄位4與欄位3的值重覆，請重新輸入!');
-                    document.F1.dreamNum4.value='';
-                }
-                else if(document.F1.dreamNum4.value==document.F1.dreamNum5.value&&document.F1.dreamNum5.value!=''){
-                    alert('欄位4與欄位5的值重覆，請重新輸入!');
-                    document.F1.dreamNum4.value='';
-                }
-                else if(document.F1.dreamNum4.value==document.F1.dreamSpec.value&&document.F1.dreamSpec.value!=''){
-                    alert('欄位4與特別號的值重覆，請重新輸入!');
-                    document.F1.dreamNum4.value='';
-                }                                
-            } 
-            else if (FormId == "dreamNum5"){
-                if(document.F1.dreamNum5.value==document.F1.dreamNum1.value&&document.F1.dreamNum1.value!=''){
-                    alert('欄位5與欄位1的值重覆，請重新輸入!');
-                    document.F1.dreamNum5.value='';
-                }
-                else if(document.F1.dreamNum5.value==document.F1.dreamNum2.value&&document.F1.dreamNum2.value!=''){
-                    alert('欄位5與欄位2的值重覆，請重新輸入!');
-                    document.F1.dreamNum5.value='';
-                }
-                else if(document.F1.dreamNum5.value==document.F1.dreamNum3.value&&document.F1.dreamNum3.value!=''){
-                    alert('欄位5與欄位3的值重覆，請重新輸入!');
-                    document.F1.dreamNum5.value='';
-                }
-                else if(document.F1.dreamNum5.value==document.F1.dreamNum4.value&&document.F1.dreamNum4.value!=''){
-                    alert('欄位5與欄位4的值重覆，請重新輸入!');
-                    document.F1.dreamNum5.value='';
-                }
-                else if(document.F1.dreamNum5.value==document.F1.dreamSpec.value&&document.F1.dreamSpec.value!=''){
-                    alert('欄位5與特別號的值重覆，請重新輸入!');
-                    document.F1.dreamNum5.value='';
-                }                                
-            } 
-            else if (FormId == "dreamSpec"){
-                if(document.F1.dreamSpec.value==document.F1.dreamNum1.value&&document.F1.dreamNum1.value!=''){
-                    alert('特別號與欄位1的值重覆，請重新輸入!');
-                    document.F1.dreamSpec.value='';
-                }
-                else if(document.F1.dreamSpec.value==document.F1.dreamNum2.value&&document.F1.dreamNum2.value!=''){
-                    alert('特別號與欄位2的值重覆，請重新輸入!');
-                    document.F1.dreamSpec.value='';
-                }
-                else if(document.F1.dreamSpec.value==document.F1.dreamNum3.value&&document.F1.dreamNum3.value!=''){
-                    alert('特別號與欄位3的值重覆，請重新輸入!');
-                    document.F1.dreamSpec.value='';
-                }
-                else if(document.F1.dreamSpec.value==document.F1.dreamNum4.value&&document.F1.dreamNum4.value!=''){
-                    alert('特別號與欄位4的值重覆，請重新輸入!');
-                    document.F1.dreamSpec.value='';
-                }
-                else if(document.F1.dreamSpec.value==document.F1.dreamNum5.value&&document.F1.dreamNum5.value!=''){
-                    alert('特別號與特別號的值重覆，請重新輸入!');
-                    document.F1.dreamSpec.value='';
-                }                                
-            } 
-        }
+            for (i = 0; i <= arrayCol.length - 1; i++) {
+                if (FormId == arrayCol[i]) {  //代表傳入的比較欄位跟陣列的一樣，不需要比較
 
-        function keyFunction(keyID) {
-            var target
-            if (keyID == "P1") {
-                if (document.F1.P1.value.length == 2) {
-                    target = document.getElementById('P2');
-                    target.focus();
                 }
-            } else if (keyID == "P2") {
-                if (document.F1.P2.value.length == 2) {
-                    target = document.getElementById('P3');
-                    target.focus();
-                }
-            } else if (keyID == "P3") {
-                if (document.F1.P3.value.length == 2) {
-                    target = document.getElementById('P4');
-                    target.focus();
-                }
-            } else if (keyID == "P4") {
-                if (document.F1.P4.value.length == 2) {
-                    target = document.getElementById('T1');
-                    target.focus();
-                }
-            } else if (keyID == "T1") {
-                if (document.F2.T1.value.length == 2) {
-                    target = document.getElementById('T2');
-                    target.focus();
-                }
-            } else if (keyID == "T2") {
-                if (document.F2.T2.value.length == 2) {
-                    target = document.getElementById('T3');
-                    target.focus();
-                }
-            } else if (keyID == "T3") {
-                if (document.F2.T3.value.length == 2) {
-                    target = document.getElementById('T4');
-                    target.focus();
-                }
-            } else if (keyID == "T4") {
-                if (document.F2.T4.value.length == 2) {
-                    target = document.getElementById('B');
-                    target.focus();
-                }
+                else {
+                    if (document.getElementById(FormId).value == document.getElementById(arrayCol[i]).value) {
+                        if (FormId == 'dreamSpec') {
+                            alert('特別號與欄位' + (parseInt(i) + 1) + '的值重覆，請重新輸入!');
+                        }
+                        else if (parseInt(i) == 5) {
+                            alert('欄位' + (parseInt(arrayCol.indexOf(FormId)) + 1) + '與特別號的值重覆，請重新輸入!');
+                        }
+                        else {
+                            alert('欄位' + (parseInt(arrayCol.indexOf(FormId)) + 1) + '與' + '欄位' + (parseInt(i) + 1) + '的值重覆，請重新輸入!');
+                        }
 
+                        document.getElementById(FormId).value = '';
+                        //console.log(document.getElementById(FormId));
+                        document.getElementById(FormId).focus(); //回到原來的輸入欄位
+                        break;  //已經找到重覆的值了，不需要再執行下去了
+                    }
+                }
             }
         }
+
+
+
+        $('input').keyup(function (e) {
+            if ($(this).val().length == $(this).attr('maxlength'))
+                $(this).next(':input').focus();
+        });
+
+
     </script>
 
 

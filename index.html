@@ -12,7 +12,7 @@
 
 
 <body>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>-->
     <style type="text/css">
         div {
             float: left
@@ -32,7 +32,6 @@
         }
     </style>
 
-
     <form name=F1
         style="font-weight:bold;font-size:30px;padding:5px;margin-top:5px;margin-bottom:5px;background-color:hotpink;width:780px;vertical-align:middle">
         <input style="width:50px;font-weight:bold;font-size:30px" type="number" onblur="check_int('dreamNum1','1')"
@@ -47,9 +46,20 @@
             id="dreamNum5" maxlength="2"> 特別號
         <input style="width:50px;font-weight:bold;font-size:30px" type="number" onblur="check_int('dreamSpec','2')"
             id="dreamSpec" maxlength="2">
+
+
     </form>
-
-
+    <button onclick="doSort()" style="font-weight:bold;font-size:30px;">綁定夢想號碼</button>
+    <form name=F2
+        style="font-weight:bold;font-size:30px;padding:5px;margin-top:5px;margin-bottom:5px;background-color:cornflowerblue;width:780px;vertical-align:middle">
+        <input style="width:50px;font-weight:bold;font-size:30px" id="dreamNum1Sort" maxlength="2" readonly="readonly">
+        <input style="width:50px;font-weight:bold;font-size:30px" id="dreamNum2Sort" maxlength="2" readonly="readonly">
+        <input style="width:50px;font-weight:bold;font-size:30px" id="dreamNum3Sort" maxlength="2" readonly="readonly">
+        <input style="width:50px;font-weight:bold;font-size:30px" id="dreamNum4Sort" maxlength="2" readonly="readonly">
+        <input style="width:50px;font-weight:bold;font-size:30px" id="dreamNum5Sort" maxlength="2" readonly="readonly">
+        特別號
+        <input style="width:50px;font-weight:bold;font-size:30px" id="dreamSpecSort" maxlength="2" readonly="readonly">
+    </form>
 
 
 
@@ -118,10 +128,53 @@
 
 
         $('input').keyup(function (e) {
+
             if ($(this).val().length == $(this).attr('maxlength'))
                 $(this).next(':input').focus();
         });
 
+        function doSort() {
+            if (document.getElementById('dreamNum1').value == '') {
+                alert('欄位1不可以空白!');
+                document.getElementById('dreamNum1').focus();
+            }
+            else if (document.getElementById('dreamNum2').value == '') {
+                alert('欄位2不可以空白!');
+                document.getElementById('dreamNum2').focus();
+            }
+            else if (document.getElementById('dreamNum3').value == '') {
+                alert('欄位3不可以空白!');
+                document.getElementById('dreamNum3').focus();
+            }
+            else if (document.getElementById('dreamNum4').value == '') {
+                alert('欄位4不可以空白!');
+                document.getElementById('dreamNum4').focus();
+            }
+            else if (document.getElementById('dreamNum5').value == '') {
+                alert('欄位5不可以空白!');
+                document.getElementById('dreamNum5').focus();
+            }
+            else if (document.getElementById('dreamSpec').value == '') {
+                alert('特別號不可以空白!');
+                document.getElementById('dreamSpec').focus();
+            }
+            else {
+                var array = [document.getElementById('dreamNum1').value,
+                document.getElementById('dreamNum2').value,
+                document.getElementById('dreamNum3').value,
+                document.getElementById('dreamNum4').value,
+                document.getElementById('dreamNum5').value]
+                console.log(array.sort());
+                //已經排序完了，重新給值
+                document.getElementById('dreamNum1Sort').value=array[0];
+                document.getElementById('dreamNum2Sort').value=array[1];
+                document.getElementById('dreamNum3Sort').value=array[2];
+                document.getElementById('dreamNum4Sort').value=array[3];
+                document.getElementById('dreamNum5Sort').value=array[4];
+                document.getElementById('dreamSpecSort').value=document.getElementById('dreamSpec').value;
+
+            }
+        }
 
     </script>
 
